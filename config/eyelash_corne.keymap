@@ -69,7 +69,7 @@
             bindings = <
 &TILDE &kp EXCL  &kp AT      &kp HASH    &kp DLLR     &kp PRCNT                                 &mmv MOVE_UP                     &kp CARET    &kp AMPS    &kp ASTRK  &kp LPAR   &kp RPAR   &kp BSPC
 &trans  &kp ESC   &kp ESC     &kp ESC     &kp ESC      &kp ESC                  &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp MINUS    &kp PLUS    &kp EQUAL  &kp LBKT   &kp RBKT   &kp GRAVE
-&trans  &none     &none       &none       &none        &none    &kp C_MUTE                      &mmv MOVE_DOWN                   &kp UNDER    &kp BSLH    &kp PIPE   &kp LBRC   &kp RBRC   &kp TILDE &trans
+&trans  &none     &none       &none       &none        &none    &kp C_MUTE                      &mmv MOVE_DOWN                   &kp UNDER    &kp BSLH    &kp PIPE   &kp LBRC   &kp RBRC   &trans
                              &trans       &trans       &trans                                                                    &kp SPACE    &trans      &trans
             >;             
             sensor-bindings = <&scroll_encoder>;
@@ -91,7 +91,7 @@
         layer_3 {
             display-name = "Fn";
             bindings = <
-&studio_unlock  &out OUT_USB     &out OUT_BLE    &kp F3        &kp F4        &kp F5                                     &mmv MOVE_UP                     &rgb_ug RGB_EFF     &rgb_ug RGB_EFR    &rgb_ug RGB_SPI  &rgb_ug RGB_BRI   &rgb_ug RGB_BRD
+&studio_unlock  &out OUT_USB     &out OUT_BLE    &kp F3        &kp F4        &kp F5                                     &mmv MOVE_UP                     &rgb_ug RGB_EFF     &rgb_ug RGB_EFR    &rgb_ug RGB_SPI  &rgb_ug RGB_BRI   &rgb_ug RGB_BRD &none
 &BT_CLR         &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3               &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT       &bootloader         &mkp LCLK          &mkp MCLK        &mkp RCLK         &kp PRINTSCREEN  &kp F12
 &trans          &sys_reset       &OUT_BLE        &bootloader   &trans        &mkp MB5     &kp C_MUTE                    &mmv MOVE_DOWN                   &rgb_ug RGB_OFF     &rgb_ug RGB_ON     &bootloader      &sys_reset        &kp SCROLLLOCK   &kp PAUSE_BREAK
                                             &trans       &trans     &trans                                                                               &trans       &trans     &trans
