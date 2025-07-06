@@ -1,5 +1,5 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 30   // 10 20
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 80   // 10 20
 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -13,7 +13,7 @@
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; }; // 2 1
 /* 4배 스케일 적용 */
-&msc_input_listener { input-processors = <&wheel_scaler 4 1>; };
+&msc_input_listener { input-processors = <&wheel_scaler 3 1>; };
 
 
 &msc {
@@ -49,34 +49,7 @@
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
         bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-        tap-ms = <40>;
-    };
-
-    /* ----------- BLE 전용 스크롤 (1/8) ----------- */
-    scroll_ble: scroll_ble {
-        compatible = "zmk,behavior-sensor-rotate-var";
-        #sensor-binding-cells = <2>;
-        bindings = <&msc>, <&msc>;   /* 양방향 모두 &msc 사용 */
-        tap-ms = <35>;               /* 디텐트 길이 */
-    };
-    
-    /* ----------- USB 전용 스크롤 (120) ----------- */
-    scroll_usb: scroll_usb {
-        compatible = "zmk,behavior-sensor-rotate-var";
-        #sensor-binding-cells = <2>;
-        bindings = <&msc>, <&msc>;
-        tap-ms = <35>;
-    };
-
-    
-    /* ---------- 자동 전환(MUX) ---------- */
-    scroll_mux: scroll_mux {
-        compatible = "zmk,behavior-conditional";
-        #binding-cells = <0>;
-        bindings = <
-            &out OUT_USB &scroll_usb
-            &out OUT_BLE &scroll_ble
-        >;
+        tap-ms = <20>;
     };
 
     keymap {
@@ -90,11 +63,7 @@
 &kp LSHFT  &kp Z  &kp X  &kp C     &kp V  &kp B        &mkp RCLK       &mmv MOVE_DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT
                          &kp LALT  &mo 1  &kp SPACE                                                &kp SPACE    &mo 2  &kp LGUI
             >;
-            sensor-bindings = <
-                &scroll_mux                       /* 자동 USB/BLE 감지 */
-                    MOVE_Y(120)  MOVE_Y(-120)     /* USB 쪽 값 */
-                    MOVE_Y(15)   MOVE_Y(-15)      /* BLE 쪽 값 */
-            >;
+             sensor-bindings = <&scroll_encoder>;
         };
 
         lower_layer {
@@ -119,11 +88,7 @@
                               &trans     &trans     &kp SPACE                                                 &kp SPACE  &trans     &trans
             >;
 
-            sensor-bindings = <
-                &scroll_mux                       /* 자동 USB/BLE 감지 */
-                    MOVE_Y(120)  MOVE_Y(-120)     /* USB 쪽 값 */
-                    MOVE_Y(15)   MOVE_Y(-15)      /* BLE 쪽 값 */
-            >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         layer_3 {
@@ -135,11 +100,7 @@
                                             &trans         &trans          &trans                                                       &trans          &trans            &trans
             >;
 
-            sensor-bindings = <
-                &scroll_mux                       /* 자동 USB/BLE 감지 */
-                    MOVE_Y(120)  MOVE_Y(-120)     /* USB 쪽 값 */
-                    MOVE_Y(15)   MOVE_Y(-15)      /* BLE 쪽 값 */
-            >;
+            sensor-bindings = <&scroll_encoder>;
         };
     };
 
