@@ -182,8 +182,8 @@ layers:
   - $$mdi:progress-download$$
   - {t: '$$mdi:transfer$$', type: trans}
   - '&mkp MB5'
-  - $$mdi:volume-off$$
-  - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
+  - {t: '$$mdi:volume-off$$', type: held}
+  - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$', type: held}
   - RGB OFF
   - RGB ON
   - $$mdi:progress-download$$
@@ -196,3 +196,6 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+combos:
+- p: [34, 35]
+  k: Fn
