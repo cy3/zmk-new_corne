@@ -161,7 +161,7 @@ layers:
   - RGB BRI
   - RGB BRD
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&BT_CLR'
+  - $$mdi:bluetooth-off$$
   - BT CLR ALL
   - {h: '1', s: '$$mdi:bluetooth-connect$$'}
   - {h: '2', s: '$$mdi:bluetooth-connect$$'}
@@ -191,11 +191,11 @@ layers:
   - SCROLLLOCK
   - PAUSE BREAK
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
 combos:
-- p: [44, 46]
+- p: [43, 46]
   k: Fn
