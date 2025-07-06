@@ -1,5 +1,5 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 10   // 10 20
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 80   // 10 20
 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -12,10 +12,25 @@
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 
-&msc_input_listener { input-processors = <&zip_scroll_scaler 1 1>; }; // 2 1
+&msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; }; // 2 1
+
+/* 더 키우고, 남은 값을 추적하도록 사용자 scaler 하나 추가 */
+input_processors {
+    wheel_scaler: wheel_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        type  = <INPUT_EV_REL>;
+        codes = <INPUT_REL_WHEEL>;
+        track-remainders;               /* 작은 단위 누락 방지 */
+    };
+};
+
+/* 4배 스케일 적용 */
+&msc_input_listener { input-processors = <&wheel_scaler 4 1>; };
+
 
 &msc {
-    acceleration-exponent = <1>;      // 0
+    acceleration-exponent = <0>;      // 0
     time-to-max-speed-ms = <0>;     // 300
     delay-ms = <0>;                   // 0
     trigger-period-ms = <4>;   /* 기본 8 → 4 ms  (250 Hz) */
@@ -47,8 +62,7 @@
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
         bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-
-        tap-ms = <100>;
+        tap-ms = <20>;
     };
 
     keymap {
