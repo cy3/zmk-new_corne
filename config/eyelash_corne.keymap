@@ -11,20 +11,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
-
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; }; // 2 1
-
-/* 더 키우고, 남은 값을 추적하도록 사용자 scaler 하나 추가 */
-input_processors {
-    wheel_scaler: wheel_scaler {
-        compatible = "zmk,input-processor-scaler";
-        #input-processor-cells = <2>;
-        type  = <INPUT_EV_REL>;
-        codes = <INPUT_REL_WHEEL>;
-        track-remainders;               /* 작은 단위 누락 방지 */
-    };
-};
-
 /* 4배 스케일 적용 */
 &msc_input_listener { input-processors = <&wheel_scaler 4 1>; };
 
@@ -129,4 +116,17 @@ input_processors {
             bindings = <&mo 3>;                /* ❷ 원하는 목적 레이어 번호 */
         };
     };
+
+
+    /* 더 키우고, 남은 값을 추적하도록 사용자 scaler 하나 추가 */
+    input_processors {
+        wheel_scaler: wheel_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type  = <INPUT_EV_REL>;
+            codes = <INPUT_REL_WHEEL>;
+            track-remainders;               /* 작은 단위 누락 방지 */
+        };
+    };
+
 };
