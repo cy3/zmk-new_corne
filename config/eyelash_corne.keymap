@@ -1,5 +1,5 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 120   // 10 20
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 140   // 10 20
 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -13,7 +13,7 @@
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; }; // 2 1
 /* 4배 스케일 적용 */
-&msc_input_listener { input-processors = <&wheel_scaler 6 1>; };
+&msc_input_listener { input-processors = <&wheel_scaler 4 1>; };
 
 
 &msc {
