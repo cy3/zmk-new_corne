@@ -16,7 +16,7 @@
 
 &msc {
     acceleration-exponent = <1>;      // 0
-    time-to-max-speed-ms = <100>;       // 300
+    time-to-max-speed-ms = <100>;     // 300
     delay-ms = <0>;                   // 0
 };
 
@@ -109,7 +109,7 @@
         /* MO(1) + MO(2)  →  MO(3)   (두 키 다 떼면 자동으로 레이어 3 해제) */
         combo_layer3 {
             timeout-ms = <40>;                 /* 동시에 눌렀다고 간주할 최대 지연 */
-            key-positions = < 34 35 >;         /* ← ❶ 각 키의 row/col 인덱스 입력 */
+            key-positions = < 44 46 >;         /* ← ❶ 각 키의 row/col 인덱스 입력 */
             bindings = <&mo 3>;                /* ❷ 원하는 목적 레이어 번호 */
         };
     };
